@@ -514,6 +514,7 @@ export interface OrderDetails_shop {
   countries: OrderDetails_shop_countries[];
   defaultWeightUnit: WeightUnitsEnum | null;
   fulfillmentAllowUnpaid: boolean;
+  fulfillmentAutoApprove: boolean;
 }
 
 export interface OrderDetails {
