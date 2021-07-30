@@ -89,6 +89,8 @@ export enum AttributeErrorCode {
 
 export enum AttributeInputTypeEnum {
   BOOLEAN = "BOOLEAN",
+  DATE = "DATE",
+  DATE_TIME = "DATE_TIME",
   DROPDOWN = "DROPDOWN",
   FILE = "FILE",
   MULTISELECT = "MULTISELECT",
@@ -988,6 +990,12 @@ export enum VoucherTypeEnum {
   SPECIFIC_PRODUCT = "SPECIFIC_PRODUCT",
 }
 
+export enum WarehouseClickAndCollectOptionEnum {
+  ALL = "ALL",
+  DISABLED = "DISABLED",
+  LOCAL = "LOCAL",
+}
+
 export enum WarehouseErrorCode {
   ALREADY_EXISTS = "ALREADY_EXISTS",
   GRAPHQL_ERROR = "GRAPHQL_ERROR",
@@ -1130,6 +1138,8 @@ export interface AttributeInput {
   slug: string;
   values?: (string | null)[] | null;
   valuesRange?: IntRangeInput | null;
+  dateTime?: DateTimeRangeInput | null;
+  date?: DateRangeInput | null;
   boolean?: boolean | null;
 }
 
@@ -1167,6 +1177,8 @@ export interface AttributeValueInput {
   references?: string[] | null;
   richText?: any | null;
   boolean?: boolean | null;
+  date?: any | null;
+  dateTime?: any | null;
 }
 
 export interface AttributeValueTranslationInput {
@@ -1176,7 +1188,8 @@ export interface AttributeValueTranslationInput {
 
 export interface BulkAttributeValueInput {
   id?: string | null;
-  values: string[];
+  values?: string[] | null;
+  boolean?: boolean | null;
 }
 
 export interface CatalogueInput {
@@ -1782,6 +1795,7 @@ export interface SaleFilterInput {
   saleType?: DiscountValueTypeEnum | null;
   started?: DateTimeRangeInput | null;
   search?: string | null;
+  metadata?: (MetadataFilter | null)[] | null;
 }
 
 export interface SaleInput {
@@ -1963,6 +1977,7 @@ export interface VoucherFilterInput {
   discountType?: (VoucherDiscountType | null)[] | null;
   started?: DateTimeRangeInput | null;
   search?: string | null;
+  metadata?: (MetadataFilter | null)[] | null;
 }
 
 export interface VoucherInput {
@@ -1997,8 +2012,10 @@ export interface WarehouseCreateInput {
 }
 
 export interface WarehouseFilterInput {
+  clickAndCollectOption?: WarehouseClickAndCollectOptionEnum | null;
   search?: string | null;
   ids?: (string | null)[] | null;
+  isPrivate?: boolean | null;
 }
 
 export interface WarehouseSortingInput {
@@ -2011,6 +2028,8 @@ export interface WarehouseUpdateInput {
   email?: string | null;
   name?: string | null;
   address?: AddressInput | null;
+  clickAndCollectOption?: WarehouseClickAndCollectOptionEnum | null;
+  isPrivate?: boolean | null;
 }
 
 export interface WebhookCreateInput {
