@@ -63,6 +63,20 @@ export enum AppErrorCode {
   UNIQUE = "UNIQUE",
 }
 
+export enum AppExtensionTargetEnum {
+  CREATE = "CREATE",
+  MORE_ACTIONS = "MORE_ACTIONS",
+}
+
+export enum AppExtensionTypeEnum {
+  DETAILS = "DETAILS",
+  OVERVIEW = "OVERVIEW",
+}
+
+export enum AppExtensionViewEnum {
+  PRODUCT = "PRODUCT",
+}
+
 export enum AppSortField {
   CREATION_DATE = "CREATION_DATE",
   NAME = "NAME",
@@ -1066,6 +1080,12 @@ export interface AddressInput {
   phone?: string | null;
 }
 
+export interface AppExtensionFilterInput {
+  view?: AppExtensionViewEnum | null;
+  type?: AppExtensionTypeEnum | null;
+  target?: AppExtensionTargetEnum | null;
+}
+
 export interface AppFilterInput {
   search?: string | null;
   isActive?: boolean | null;
@@ -1782,6 +1802,7 @@ export interface SaleFilterInput {
   saleType?: DiscountValueTypeEnum | null;
   started?: DateTimeRangeInput | null;
   search?: string | null;
+  metadata?: (MetadataFilter | null)[] | null;
 }
 
 export interface SaleInput {
@@ -1963,6 +1984,7 @@ export interface VoucherFilterInput {
   discountType?: (VoucherDiscountType | null)[] | null;
   started?: DateTimeRangeInput | null;
   search?: string | null;
+  metadata?: (MetadataFilter | null)[] | null;
 }
 
 export interface VoucherInput {
